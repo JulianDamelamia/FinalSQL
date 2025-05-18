@@ -1,6 +1,6 @@
 id,cargo,dedicacion,salario,titulo_academico,id_departamento,nombre,apellido,email,estado,id_tipo_personal,antiguedad
-1,Ayudante,Medio tiempo,96128.23,Licenciado,1,Lara,Lopez,lara_lopez@hotmail.com,activo,1,3
-2,Ayudante,Horas cátedra,108128.98,Magíster,3,Renzo,Soto,renzo_soto@gmail.com,activo,1,1
-3,Profesor Titular,Horas cátedra,112462.42,Ingeniero,1,Bianca,Luna,bianca_luna@yahoo.com,activo,1,26
-4,Profesor Titular,Horas cátedra,82771.74,Licenciado,3,Delfina,Ruiz,delfina_ruiz@yahoo.com,activo,1,23
-5,Profesor Adjunto,Medio tiempo,125880.71,Licenciado,3,Emilia,Perez,emilia_perez@yahoo.com,activo,1,17
+1,JTP,Horas cátedra,81966.48,Licenciado,3,Tiziano,Fernandez,tiziano_fernandez@yahoo.com,activo,1,15
+2,JTP,Tiempo completo,89716.84,Licenciado,3,Juan Ignacio,Alvarez,juanignacio_alvarez@hotmail.com,activo,1,2
+3,Profesor Titular,Horas cátedra,129361.31,Doctor,3,Juan Ignacio,Franco,juanignacio_franco@hotmail.com,activo,1,23
+4,Profesor Titular,Horas cátedra,117027.47,Licenciado,1,Thiago Nicolas,Lopez,thiagonicolas_lopez@yahoo.com,activo,1,8
+5,Ayudante,Medio tiempo,131339.49,Doctor,2,Francesca,Sosa,francesca_sosa@yahoo.com,activo,1,3

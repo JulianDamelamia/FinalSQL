@@ -9,44 +9,6 @@ fake = Faker('es_AR')
 Faker.seed(41)
 random.seed(41)
 
-def generar_departamentos(n=4):
-    departamentos = []
-    for i in range(1, n+1):
-        departamentos.append({
-            'id': i,
-            'nombre': fake.company_suffix().capitalize()
-        })
-    return pd.DataFrame(departamentos)
-
-def generar_tipo_becas():
-    tipos = [
-        {'id': 1, 'concepto_beca': 'Parcial', 'monto': 5000.0},
-        {'id': 2, 'concepto_beca': 'Total', 'monto': 15000.0}
-    ]
-    return pd.DataFrame(tipos)
-
-def generar_carreras(n=2):
-    carreras = []
-    for i in range(1, n+1):
-        carreras.append({
-            'id': i,
-            'titulo': fake.job().capitalize()
-        })
-    return pd.DataFrame(carreras)
-
-def generar_materias(n=10, departamentos=None):
-    materias = []
-    for i in range(1, n+1):
-        materias.append({
-            'id': i,
-            'nombre': fake.catch_phrase(),
-            'duracion': 'cuatrimestral',
-            'creditos': random.randint(4, 10),
-            'horas_semanales': random.randint(2, 6),
-            'asistencia_requerida': 75,
-            'id_departamento': random.choice(list(departamentos['id'])) if departamentos is not None else 1
-        })
-    return pd.DataFrame(materias)
 
 def generar_alumnos(n=10, tipo_becas=None):
     alumnos = []
@@ -64,6 +26,123 @@ def generar_alumnos(n=10, tipo_becas=None):
             'id_beca': random.choice(list(tipo_becas['id'])) if tipo_becas is not None else None
         })
     return pd.DataFrame(alumnos)
+
+def generar_materias(n=10, lista_materias = None, departamentos=None):
+    materias = []
+    rango = len(lista_materias) if lista_materias is not None else n
+    for i in range(1, n+1):
+        materias.append({
+            'id': i,
+            'nombre': fake.catch_phrase() if lista_materias is None else random.choice(lista_materias),
+            'duracion': 'cuatrimestral',
+            'creditos': random.randint(4, 10),
+            'horas_semanales': random.randint(2, 6),
+            'asistencia_requerida': 75,
+            'id_departamento': random.choice(list(departamentos['id'])) if departamentos is not None else 1
+        })
+    return pd.DataFrame(materias)
+
+def generar_cursada(alumnos:pd.DataFrame, materias:pd.DataFrame, periodos_academicos:pd.DataFrame)-> pd.DataFrame:
+    id_alumnos_list = list(alumnos['id'])
+    id_materia_list =  list(materias['id'])
+    id_periodo_academico_list = list(periodos_academicos['id'])
+    cursada = []
+    id_cursada = 1
+    id_calificaciones = 1
+    id_asistencia = 1
+    for id_alumno in id_alumnos_list:
+        cursada.append({
+            'id': id_cursada,
+            'id_alumno': id_alumno,
+            'id_materia': random.choice(id_materia_list),
+            'id_calificaciones': id_calificaciones,
+            'id_asistencia': id_asistencia,
+            'id_periodo_academico': random.choice(id_periodo_academico_list)
+            })
+        id_cursada += 1
+        id_calificaciones += 1
+        id_asistencia += 1
+    return(pd.DataFrame(cursada))
+
+def generar_periodos_academicos(n=10):
+    periodos = []
+    anio = 2026-n
+    cuatrimestres_dict = {'1C':{'ini':3, 'fin':6}, '2C':{'ini':8, 'fin':11}}
+    for i in range(n):
+        periodos.append({
+            'id':f'1C{anio}',
+            'duracion': 'cuatrimestral',
+            'fecha_inicio': datetime.date(anio, cuatrimestres_dict['1C']['ini'], 1),
+            'fecha_fin': datetime.date(anio, cuatrimestres_dict['1C']['fin'], 30),
+
+        })
+        periodos.append({
+            'id':f'2C{anio}',
+            'duracion': 'cuatrimestral',
+            'fecha_inicio': datetime.date(anio, cuatrimestres_dict['2C']['ini'], 1),
+            'fecha_fin': datetime.date(anio, cuatrimestres_dict['2C']['fin'], 30),
+
+        })
+        periodos.append({
+            'id':f'A{anio}',
+            'duracion': 'anual',
+            'fecha_inicio': datetime.date(anio, cuatrimestres_dict['1C']['ini'], 1),
+            'fecha_fin': datetime.date(anio, cuatrimestres_dict['2C']['fin'], 30),
+
+        })
+        anio += 1
+    return pd.DataFrame(periodos)
+
+def generar_asistencia(df_cursada:pd.DataFrame) -> pd.DataFrame:
+    asistencia_por_cursada = []
+    pass
+tipo_personal = pd.DataFrame([{'id': 1, 'descipcion': 'Docente', 'salario':123456}, {'id': 2, 'descipcion': 'No Docente', 'salario':123456}])
+def generar_personal(docentes:pd.DataFrame, departamentos:pd.DataFrame, n_no_docentes=5, tipo_personal=tipo_personal):
+    personal = []
+    for i in range(1, n_no_docentes+1):
+        nombre = fake.first_name()
+        apellido = fake.last_name()
+        personal.append({
+            'id': i,
+            'id_departamento':random.choice(list(departamentos['id'])) if departamentos is not None else 1,
+            'nombre':nombre,
+            'apellido':apellido,
+            'email':f"{nombre.replace(' ','').lower()}_{apellido.replace(' ','').lower()}@{fake.free_email_domain()}",
+            'estado':random.choices(['activo', 'licencia','inactivo'], weights=[20, 5, 2], k=1)[0],
+            'id_tipo_personal':2,
+            'antiguedad':random.randint(1, 30),
+        })
+        #TODO: falta agregar los docentes que haya generado en el dict docentes con id_tipo_personal = 1
+        pass
+    # return pd.DataFrame(personal)
+def generar_departamentos(n=2):
+    departamentos = []
+    for i in range(1, n+1):
+        departamentos.append({
+            'id': i,
+            'nombre': fake.company_suffix().capitalize()
+        })
+    return pd.DataFrame(departamentos)
+
+def generar_tipo_becas():
+    tipos = [
+        {'id': 1, 'concepto_beca': 'Parcial', 'monto': 5000.0},
+        {'id': 2, 'concepto_beca': 'Total', 'monto': 15000.0}
+    ]
+    return pd.DataFrame(tipos)
+
+def generar_carreras(n=4, lista_carreras = None):
+    carreras = []
+    rango = len(lista_carreras) if lista_carreras is not None else n
+    for i in range(1, rango+1):
+        carreras.append({
+            'id': i,
+            'titulo': fake.job().capitalize() if lista_carreras is None else lista_carreras[i-1],
+        })
+    return pd.DataFrame(carreras)
+
+
+
 
 def generar_profesores(n=5, departamentos=None):
     profesores = []
@@ -90,16 +169,18 @@ def generar_profesores(n=5, departamentos=None):
         })
     return pd.DataFrame(profesores)
 
-def generar_plan_estudio(materias, carreras, n=10):
+def generar_plan_estudio(materias:dict, carreras:dict, materias_por_carrera:int =5):
     plan = []
-    for i in range(1, n+1):
-        plan.append({
-            'id': i,
-            'anio_actualizacion': random.randint(2015, 2024),
-            'creditos_requeridos': random.randint(120, 200),
-            'id_carrera': random.choice(list(carreras['id'])),
-            'id_materia': random.choice(list(materias['id'])),
-        })
+    for id_carrera in list(carreras['id']):
+        anio_actualizacion = random.randint(1980, 2024)
+        for i in range(1, materias_por_carrera+1):
+            plan.append({
+                'id': i,
+                'id_carrera': id_carrera,
+                'anio_actualizacion':anio_actualizacion,
+                'creditos_requeridos': random.randint(120, 200),
+                'id_materia': random.choice(list(materias['id'])),
+            })
     return pd.DataFrame(plan)
 
 def generar_estudia(alumnos, carreras, n=15):
@@ -126,24 +207,4 @@ def generar_dicta(profesores, materias, n=10):
     return pd.DataFrame(dicta)
 
 
-departamentos = generar_departamentos(3)
-tipo_becas = generar_tipo_becas()
-carreras = generar_carreras(5)
-materias = generar_materias(departamentos=departamentos)
-alumnos = generar_alumnos(tipo_becas=tipo_becas)
-profesores = generar_profesores(departamentos=departamentos)
-plan_estudio = generar_plan_estudio(materias, carreras)
-estudia = generar_estudia(alumnos, carreras)
-dicta = generar_dicta(profesores, materias)
-
-
-alumnos.to_csv('data/alumnos.csv', index=False)
-materias.to_csv('data/materias.csv', index=False)
-estudia.to_csv('data/estudia.csv', index=False)
-dicta.to_csv('data/dicta.csv', index=False)
-departamentos.to_csv('data/departamentos.csv', index=False)
-tipo_becas.to_csv('data/tipo_becas.csv', index=False)
-carreras.to_csv('data/carreras.csv', index=False)
-plan_estudio.to_csv('data/plan_estudio.csv', index=False)
-profesores.to_csv('data/profesores.csv', index=False)
 
