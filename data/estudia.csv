@@ -1,0 +1,16 @@
+id,id_alumno,id_carrera,estado,creditos_acumulados
+1,2,2,egresado,173
+2,2,4,retirado,189
+3,4,5,egresado,100
+4,6,3,egresado,7
+5,3,5,retirado,39
+6,3,5,retirado,166
+7,3,4,retirado,200
+8,2,1,retirado,170
+9,10,3,activo,174
+10,7,3,egresado,38
+11,5,4,retirado,59
+12,2,3,retirado,150
+13,7,3,egresado,125
+14,4,1,retirado,120
+15,10,4,activo,123

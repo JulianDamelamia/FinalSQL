@@ -1,0 +1,85 @@
+table_name,column_name,data_type
+alumno,id,integer
+alumno,nombre,character varying
+alumno,apellido,character varying
+alumno,email,character varying
+alumno,telefono,character varying
+alumno,direccion,character varying
+alumno,nacimiento,date
+alumno,id_beca,integer
+asistencia,id,integer
+asistencia,total_clases,integer
+asistencia,total_asistencias,integer
+aula,id,integer
+aula,edificio,character varying
+aula,numero_aula,integer
+aula,tipo_aula,character varying
+beca,id,integer
+beca,id_tipo_beca,integer
+calificaciones,id,integer
+calificaciones,nota,double precision
+calificaciones,fecha_nota,date
+calificaciones,id_tipo_instancia,integer
+carrera,id,integer
+carrera,titulo,character varying
+clase,id_materia,integer
+clase,id,integer
+clase,id_aula,integer
+clase,id_horarios,integer
+cursa,id,integer
+cursa,id_alumno,integer
+cursa,id_materia,integer
+cursa,id_calificaciones,integer
+cursa,id_asistencia,integer
+cursa,id_periodo_academico,integer
+departamento,id,integer
+departamento,nombre,character varying
+dicta,id,integer
+dicta,id_materia,integer
+dicta,id_profesor,integer
+estudia,id_alumno,integer
+estudia,id_carrera,integer
+estudia,estado,character
+estudia,creditos_acumulados,integer
+estudia,id,integer
+horarios,id,integer
+horarios,dia,character varying
+horarios,hora_inicio,timestamp with time zone
+horarios,hora_fin,timestamp with time zone
+materia,id,integer
+materia,nombre,character varying
+materia,duracion,character varying
+materia,creditos,integer
+materia,horas_semanales,integer
+materia,asistencia_requerida,integer
+materia,id_departamento,integer
+periodo_academico,id,integer
+periodo_academico,duracion,character varying
+periodo_academico,fecha_inicio,date
+periodo_academico,fecha_fin,date
+personal,id,integer
+personal,id_departamento,integer
+personal,nombre,character varying
+personal,apellido,character varying
+personal,email,character varying
+personal,estado,character varying
+personal,id_tipo_personal,integer
+personal,antiguedad,integer
+plan_estudio,id,integer
+plan_estudio,anio_actualizacion,integer
+plan_estudio,creditos_requeridos,integer
+plan_estudio,id_carrera,integer
+plan_estudio,id_materia,integer
+profesor,id,integer
+profesor,cargo,character varying
+profesor,dedicacion,character varying
+profesor,salario,numeric
+profesor,titulo_academico,character varying
+tipo_beca,id,integer
+tipo_beca,concepto_beca,character varying
+tipo_beca,monto,double precision
+tipo_instancia,id,integer
+tipo_instancia,tipo_instancia,character varying
+tipo_personal,id,integer
+tipo_personal,descripcion,integer
+tipo_personal,salario,numeric

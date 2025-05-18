@@ -1,0 +1,11 @@
+id,nombre,apellido,email,telefono,direccion,nacimiento,id_beca
+1,Mateo Ezequiel,Mansilla,mateoezequiel_mansilla@gmail.com,11-1974-2963,Avenida 8 N° 12,1996-01-20,1
+2,Ian Ezequiel,Ledesma,ianezequiel_ledesma@gmail.com,11-8087-5617,Avenida 1 N° 721,1999-07-02,1
+3,Camila,Gomez,camila_gomez@gmail.com,11-2191-6901,Diagonal Chilecito N° 2330,1995-09-12,2
+4,Malena,Ojeda,malena_ojeda@yahoo.com,11-3048-1303,Avenida Ciudad Autónoma de Buenos Aires N° 3735,1995-06-29,1
+5,Thiago Agustin,Muñoz,thiagoagustin_muñoz@hotmail.com,11-2616-3352,Diagonal Belgrano N° 2296,2001-06-28,1
+6,Juan Martin,Gomez,juanmartin_gomez@gmail.com,11-1877-5367,Avenida 8 N° 862,2005-09-30,2
+7,Victoria,Diaz,victoria_diaz@hotmail.com,11-4691-1427,Avenida San Luis N° 759,2007-02-25,1
+8,Simon,Rodriguez,simon_rodriguez@hotmail.com,11-8125-1940,Calle 3 N° 243,2003-09-09,2
+9,Tiziano,Fernandez,tiziano_fernandez@yahoo.com,11-7544-3390,Avenida 2 N° 4799,2002-11-04,1
+10,Francesca,Sosa,francesca_sosa@yahoo.com,11-2532-7671,Calle Mitre N° 329,2003-03-11,1
